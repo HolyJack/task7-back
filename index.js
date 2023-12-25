@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const socket_io_1 = require("socket.io");
 const dotenv_1 = require("dotenv");
 const crypto_1 = require("crypto");
+const http_1 = require("http");
 (0, dotenv_1.config)();
-const io = new socket_io_1.Server(80, {
+const httpServer = (0, http_1.createServer)();
+const io = new socket_io_1.Server(httpServer, {
     cors: {
         origin: process.env.URL,
     },
@@ -148,4 +150,7 @@ io.on("connection", (socket) => {
         io.in(session_uuid).emit("exit game");
         io.in(session_uuid).socketsLeave(session_uuid);
     });
+});
+httpServer.listen(89, () => {
+    console.log(`Server is running on port 80.`);
 });

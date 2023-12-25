@@ -1,10 +1,13 @@
 import { Server } from "socket.io";
 import { config } from "dotenv";
 import { randomUUID } from "crypto";
+import { createServer } from "http";
 
 config();
 
-const io = new Server(80, {
+const httpServer = createServer();
+
+const io = new Server(httpServer, {
   cors: {
     origin: process.env.URL,
   },
@@ -183,4 +186,8 @@ io.on("connection", (socket) => {
     io.in(session_uuid).emit("exit game");
     io.in(session_uuid).socketsLeave(session_uuid);
   });
+});
+
+httpServer.listen(89, () => {
+  console.log(`Server is running on port 80.`);
 });
