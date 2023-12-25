@@ -188,6 +188,6 @@ io.on("connection", (socket) => {
   });
 });
 
-httpServer.listen(89, () => {
+httpServer.listen(80, () => {
   console.log(`Server is running on port 80.`);
 });

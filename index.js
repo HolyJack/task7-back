@@ -151,6 +151,6 @@ io.on("connection", (socket) => {
         io.in(session_uuid).socketsLeave(session_uuid);
     });
 });
-httpServer.listen(89, () => {
+httpServer.listen(80, () => {
     console.log(`Server is running on port 80.`);
 });
