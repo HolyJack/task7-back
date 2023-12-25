@@ -4,7 +4,7 @@ import { randomUUID } from "crypto";
 
 config();
 
-const io = new Server(3000, {
+const io = new Server(80, {
   cors: {
     origin: process.env.URL,
   },
