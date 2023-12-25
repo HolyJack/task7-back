@@ -33,6 +33,10 @@ const gameConfigs: GameConfigs = {
     playersNumber: 2,
     checkOver: (turns) => {
       if (turns.length === 9) return 2;
+      // \ | | | /
+      // - 0 1 2
+      // - 3 4 5
+      // - 6 7 8
       const winningCombinations = [
         [0, 1, 2],
         [3, 4, 5],
@@ -114,7 +118,6 @@ io.on("connection", (socket) => {
         return;
       }
 
-      console.log("second player connected");
       const curturn = gameSession.turn;
       if (curturn === socket.id) {
         const indexOfNext =
@@ -177,7 +180,6 @@ io.on("connection", (socket) => {
     const hits = gameSession.playerFields[enemy].reduce(
       (acc, e) => acc + (e === 2 ? 1 : 0),
     );
-    console.log(hits);
     if (hits === 1 * 5 + 2 * 4 + 3 * 3 + 2 * 4) {
       io.to(session_uuid).emit("game finished", player);
     }
