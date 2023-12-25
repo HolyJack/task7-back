@@ -6,6 +6,7 @@ const crypto_1 = require("crypto");
 const http_1 = require("http");
 (0, dotenv_1.config)();
 const httpServer = (0, http_1.createServer)();
+const PORT = process.env.PORT || 80;
 const io = new socket_io_1.Server(httpServer, {
     cors: {
         origin: process.env.URL,
@@ -151,6 +152,6 @@ io.on("connection", (socket) => {
         io.in(session_uuid).socketsLeave(session_uuid);
     });
 });
-httpServer.listen(80, () => {
-    console.log(`Server is running on port 80.`);
+httpServer.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
 });

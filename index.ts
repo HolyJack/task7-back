@@ -7,6 +7,7 @@ config();
 
 const httpServer = createServer();
 
+const PORT = process.env.PORT || 80;
 const io = new Server(httpServer, {
   cors: {
     origin: process.env.URL,
@@ -188,6 +189,6 @@ io.on("connection", (socket) => {
   });
 });
 
-httpServer.listen(80, () => {
-  console.log(`Server is running on port 80.`);
+httpServer.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
 });
